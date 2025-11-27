@@ -58,13 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         passwordController.text,
                       ),
                     );
-
-
-                    print("object");
-
                   },
-
-
 
                   child: Text("Sign In"),
                 ),
