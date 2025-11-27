@@ -1,9 +1,9 @@
 // lib/core/constants/api_constants.dart
 class ApiConstants {
-  static const String baseUrl = "https://yourapi.com";
+  static const String baseUrl = "https://www.server.thereflectivespiritapp.com/api/v1";
 
   // Auth APIs
-  static const String signIn = "/signin";
+  static const String signIn = "$baseUrl/auth/login";
   static const String signUp = "/signup";
 
   // Example: User APIs

@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/auth_blocs.dart';
-import '../blocs/auth_event.dart';
-import '../blocs/auth_state.dart';
+import '../blocs/auth_blocs/auth_blocs.dart';
+import '../blocs/auth_blocs/auth_event.dart';
+import '../blocs/auth_blocs/auth_state.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -26,11 +26,13 @@ class _SignInScreenState extends State<SignInScreen> {
         child: BlocConsumer<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message)));
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is AuthFailure) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.error)));
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.error)));
             }
           },
           builder: (context, state) {
@@ -39,17 +41,33 @@ class _SignInScreenState extends State<SignInScreen> {
             }
             return Column(
               children: [
-                TextField(controller: emailController, decoration: InputDecoration(labelText: "Email")),
-                TextField(controller: passwordController, decoration: InputDecoration(labelText: "Password")),
+                TextField(
+                  controller: emailController,
+                  decoration: InputDecoration(labelText: "Email"),
+                ),
+                TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(labelText: "Password"),
+                ),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(
-                      SignInRequested(emailController.text, passwordController.text),
+                      SignInRequested(
+                        emailController.text,
+                        passwordController.text,
+                      ),
                     );
+
+
+                    print("object");
+
                   },
+
+
+
                   child: Text("Sign In"),
-                )
+                ),
               ],
             );
           },
